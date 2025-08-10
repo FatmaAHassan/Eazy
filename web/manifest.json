@@ -1,6 +1,6 @@
 {
-    "name": "eazy",
-    "short_name": "eazy",
+    "name": "easy_app",
+    "short_name": "easy_app",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

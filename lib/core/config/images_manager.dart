@@ -8,8 +8,8 @@ class ImagesManager {
   static const String camera = "assets/svgs/camera.svg";
   static const String crown = "assets/svgs/crown.svg";
   static const String delete = "assets/svgs/delete.svg";
-  static const String eazyText = "assets/svgs/eazy_text.svg";
-  static const String eazy = "assets/svgs/eazy.svg";
+  static const String eazyText = "assets/images/eazy.png";
+  static const String eazy = "assets/images/image_logo.png";
   static const String edit = "assets/svgs/edit.svg";
   static const String error = "assets/svgs/error.svg";
   static const String facebook = "assets/svgs/facebook.svg";
@@ -25,7 +25,7 @@ class ImagesManager {
   static const String myLesson = "assets/svgs/my_lesson.svg";
   static const String noNotification = "assets/svgs/no_notification.svg";
   static const String notification = "assets/svgs/notification.svg";
-  static const String onboarding = "assets/svgs/onboarding.svg";
+  static const String onboarding = "assets/images/onboarding.png";
   static const String padlock = "assets/svgs/padlock.svg";
   static const String profile = "assets/svgs/profile.svg";
   static const String puzzle = "assets/svgs/puzzle.svg";
@@ -44,4 +44,11 @@ class ImagesManager {
   static const String warning = "assets/svgs/warning.svg";
   static const String welcomeEazy = "assets/svgs/welcome_eazy.svg";
   static const String whatsapp = "assets/svgs/whatsapp.svg";
+
+  static const String facebookk = "assets/images/فيسبوك.jpg";
+  static const String instagramm = "assets/images/انستججررام.jpg";
+  static const String whatsappp = "assets/images/whatsapp_101778.png";
+  static const String twitterr = "assets/images/تويتتر.jpg";
+
+
 }

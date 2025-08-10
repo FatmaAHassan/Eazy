@@ -1,4 +1,7 @@
 class AppPadding {
-  static const double horizontalPagePadding = 30;
-  static const double containerPaddingAll = 16;
+  static const double horizontalPagePadding = 32;
+  static const double verticalPadding = 20;
+  static const double containerPaddingAll = 20;
 }
+
+
