@@ -1,4 +1,4 @@
-class ImagesManager {
+ class ImagesManager {
   static const String newOffer = "assets/imagges/new_offers.png";
   static const String splashScreen = "assets/images/splash.png";
   static const String bill = "assets/svgs/bill.svg";

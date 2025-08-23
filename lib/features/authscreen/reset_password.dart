@@ -1,7 +1,7 @@
 
-import 'package:easy_app/features/authscreen/widgets/custom_buttom.dart';
-import 'package:easy_app/features/authscreen/widgets/custom_icon_bar.dart';
-import 'package:easy_app/features/authscreen/widgets/custom_text_field.dart';
+import 'package:Easy/features/authscreen/widgets/custom_buttom.dart';
+import 'package:Easy/features/authscreen/widgets/custom_icon_bar.dart';
+import 'package:Easy/features/authscreen/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import '../../constants.dart';
 import '../../helper/show_dialog.dart';

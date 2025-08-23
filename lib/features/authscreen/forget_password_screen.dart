@@ -1,8 +1,8 @@
-import 'package:easy_app/constants.dart';
-import 'package:easy_app/features/authscreen/widgets/custom_buttom.dart';
-import 'package:easy_app/features/authscreen/widgets/custom_icon_bar.dart';
-import 'package:easy_app/features/authscreen/widgets/custom_text_field.dart';
-import 'package:easy_app/helper/show_snack_bar.dart';
+import 'package:Easy/constants.dart';
+import 'package:Easy/features/authscreen/widgets/custom_buttom.dart';
+import 'package:Easy/features/authscreen/widgets/custom_icon_bar.dart';
+import 'package:Easy/features/authscreen/widgets/custom_text_field.dart';
+import 'package:Easy/helper/show_snack_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'otp_screen.dart';

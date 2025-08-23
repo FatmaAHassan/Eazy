@@ -1,4 +1,4 @@
-import 'package:easy_app/core/routing/routes.dart';
+import 'package:Easy/core/routing/routes.dart';
 import 'package:flutter/material.dart';
 
 import '../../splash_screen.dart';

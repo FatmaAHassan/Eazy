@@ -1,4 +1,4 @@
-import 'package:easy_app/core/Other/Screens/share%20app.dart';
+import 'package:Easy/core/Other/Screens/share%20app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../config/app_palette.dart';

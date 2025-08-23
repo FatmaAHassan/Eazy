@@ -1,6 +1,6 @@
+import 'package:Easy/core/config/images_manager.dart';
 import 'package:flutter/material.dart';
 import '../config/app_palette.dart';
-import '../config/images_manager.dart';
 import 'Result.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

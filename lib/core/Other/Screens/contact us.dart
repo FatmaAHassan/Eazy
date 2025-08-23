@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import '../../config/app_palette.dart';
 import '../../config/images_manager.dart';
 import '../../config/text_styles_manager.dart';

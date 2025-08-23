@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../config/app_palette.dart';
 import '../config/images_manager.dart';

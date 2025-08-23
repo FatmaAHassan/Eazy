@@ -1,5 +1,5 @@
 
-import 'package:easy_app/features/profile/presentation/screen/personalDetailsScreen.dart';
+import 'package:Easy/features/profile/presentation/screen/personalDetailsScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../constants.dart';

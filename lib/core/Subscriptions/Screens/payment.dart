@@ -1,8 +1,8 @@
-import 'package:easy_app/core/Subscriptions/Screens/Subscriptions.dart';
 import 'package:flutter/material.dart';
 import '../../config/app_padding.dart';
 import '../../config/app_palette.dart';
 import '../../config/images_manager.dart';
+import 'Subscriptions.dart';
 
 class PaymentScreen extends StatelessWidget {
   const PaymentScreen({super.key});
