@@ -28,6 +28,8 @@ dependencies:
   flutter_native_splash: ^2.4.4
   modal_progress_hud_nsn: ^0.5.1
   url_launcher:
+  dio: ^5.9.0
+  bloc: ^9.0.0
 
 dev_dependencies:
   flutter_test:
