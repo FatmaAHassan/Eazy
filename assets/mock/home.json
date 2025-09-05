@@ -1,0 +1,88 @@
+{
+    "slider": [
+        {
+            "id": 6,
+            "image": "https://easy.nour-projects.com/images/2wNanIjti0hoI1mBl2zq.png",
+            "status": 1,
+            "created_at": "2024-09-21T09:28:57.000000Z",
+            "updated_at": "2024-09-21T09:28:57.000000Z"
+        },
+        {
+            "id": 5,
+            "image": "https://easy.nour-projects.com/images/DZZYLFQBI9vUKnciXRFw.jpeg",
+            "status": 1,
+            "created_at": "2024-09-04T08:22:06.000000Z",
+            "updated_at": "2024-09-04T08:22:06.000000Z"
+        }
+    ],
+    "user": {
+        "id": 50,
+        "name": "fatma",
+        "email": "fatma3@gmail.com",
+        "phone": "01551556865",
+        "image": null,
+        "otp": null,
+        "device_token": null,
+        "email_verified_at": null,
+        "status": 1,
+        "verified": 1,
+        "created_at": "2025-08-29T18:10:43.000000Z",
+        "updated_at": "2025-08-29T18:11:29.000000Z"
+    },
+    "categories": [
+        {
+            "id": 1,
+            "title": "ادارة الذات",
+            "image": "https://easy.syntecheg.com/images/efkxL0v44Hr1Ho41ciRO.png",
+            "cover": "https://easy.nour-projects.com/images/cnFLTDME2u5mjJbNNwhs.png",
+            "status": 1,
+            "content": "https://easy.syntecheg.com/images/1FgtGqk2NgahIk8Sp9kb.png",
+            "created_at": "2024-03-22T03:45:36.000000Z"
+        },
+        {
+            "id": 2,
+            "title": "المهارات الحياتية",
+            "image": "https://easy.syntecheg.com/images/yK4UeCsNfX2B6l6ucZs6.png",
+            "cover": "https://easy.nour-projects.com/images/wE8JlT6HrG3Qkx03gIRM.png",
+            "status": 1,
+            "content": "https://easy.syntecheg.com/images/yK4UeCsNfX2B6l6ucZs6.png",
+            "created_at": "2024-03-22T03:45:36.000000Z"
+        },
+        {
+            "id": 3,
+            "title": "لغة عربية 1",
+            "image": "https://easy.syntecheg.com/images/4K3f389paLJCIlfdTH9g.png",
+            "cover": "https://easy.nour-projects.com/images/pl0YRmJlyEomWepgVlH7.png",
+            "status": 1,
+            "content": "https://easy.nour-projects.com/images/hH20t41RgnVutmEj20ds.png",
+            "created_at": "2024-03-22T03:45:36.000000Z"
+        },
+        {
+            "id": 4,
+            "title": "لغة عربية 2",
+            "image": "https://easy.syntecheg.com/images/aqi8W2xq6V0NbLWoDvSP.png",
+            "cover": "https://easy.nour-projects.com/images/U4Z2FiPCX1C4ZPjoz6nt.png",
+            "status": 1,
+            "content": "https://easy.nour-projects.com/images/1NwP8aZ2XBVvRv4B23cs.png",
+            "created_at": "2024-03-22T03:45:36.000000Z"
+        },
+        {
+            "id": 5,
+            "title": "انجليزي 1",
+            "image": "https://easy.syntecheg.com/images/xHEy8o6hThXRun3WhNc1.png",
+            "cover": "https://easy.nour-projects.com/images/qnZZ3JLgnQLHfpLl0pwd.png",
+            "status": 1,
+            "content": "https://easy.nour-projects.com/images/YShV8JsaL9U9obe137oS.png",
+            "created_at": "2024-03-22T03:45:36.000000Z"
+        },
+        {
+            "id": 6,
+            "title": "انجليزي 2",
+            "image": "https://easy.syntecheg.com/images/cDKvOGvZBd1Af9qKHuTj.png",
+            "cover": "https://easy.nour-projects.com/images/vmztIF64LpZwX4hNNfhc.png",
+            "status": 1,
+            "content": "https://easy.syntecheg.com/images/zGRZU6YhvJxwqDDPy4Bz.png",
+            "created_at": "2024-03-22T03:45:36.000000Z"
+        }
+    ]
+}

@@ -30,6 +30,7 @@ dependencies:
   url_launcher:
   dio: ^5.9.0
   bloc: ^9.0.0
+  webdev_proxy: ^0.1.0
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +47,7 @@ flutter:
     - assets/svgs/
     - assets/
     - assets/images/
+    - assets/mock/
 
   fonts:
     - family: Cairo

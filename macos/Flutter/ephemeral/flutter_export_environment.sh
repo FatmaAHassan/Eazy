@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=E:\developer\flutter_windows_3.27.4-stable\flutter"
-export "FLUTTER_APPLICATION_PATH=E:\flutter projects\Eazy"
+export "FLUTTER_ROOT=C:\flutter\src\flutter-NSDK"
+export "FLUTTER_APPLICATION_PATH=D:\VS Flutter project\eazy"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"

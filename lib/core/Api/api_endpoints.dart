@@ -3,4 +3,5 @@ class ApiEndpoints {
   static const String terms = "$baseUrl/terms";
   static const String contact = "$baseUrl/contact";
   static const String onboarding = "$baseUrl/onboarding";
+  static const String home = "$baseUrl/home";
 }
