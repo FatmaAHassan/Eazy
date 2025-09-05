@@ -109,34 +109,34 @@ class _OtpScreenState extends State<OtpScreen> {
 
               SizedBox(height: 50),
 
-                  OTPTextFieldV2(
-                    length: 4,
-                    width: MediaQuery.of(context).size.width,
-                    fieldWidth: 50,
-                    style: const TextStyle(fontSize: 20),
-                    textFieldAlignment: MainAxisAlignment.spaceEvenly,
-                    fieldStyle: FieldStyle.box,
-                    otpFieldStyle: OtpFieldStyle(
-                      borderColor: hasError ? Colors.red : kPrimaryColor,
-                      focusBorderColor: hasError ? Colors.red : kPrimaryColor,
-                      backgroundColor: Colors.white,
-                    ),
-                    keyboardType: TextInputType.number,
-                    onChanged: (value) {
-                      setState(() {
-                        otpValue = value;
-                        hasError = false;
-                      });
-                    },
-                    onCompleted: (value) {
-                      setState(() {
-                        otpValue = value;
-                        hasError = false;
-                      });
-                    },
-                  ),
+              OTPTextFieldV2(
+                length: 4,
+                width: MediaQuery.of(context).size.width,
+                fieldWidth: 50,
+                style: const TextStyle(fontSize: 20),
+                textFieldAlignment: MainAxisAlignment.spaceEvenly,
+                fieldStyle: FieldStyle.box,
+                otpFieldStyle: OtpFieldStyle(
+                  borderColor: hasError ? Colors.red : kPrimaryColor,
+                  focusBorderColor: hasError ? Colors.red : kPrimaryColor,
+                  backgroundColor: Colors.white,
+                ),
+                keyboardType: TextInputType.number,
+                onChanged: (value) {
+                  setState(() {
+                    otpValue = value;
+                    hasError = false;
+                  });
+                },
+                onCompleted: (value) {
+                  setState(() {
+                    otpValue = value;
+                    hasError = false;
+                  });
+                },
+              ),
 
-                  SizedBox(height: 10),
+              SizedBox(height: 10),
               Visibility(
                 visible: hasError,
                 child: Row(
@@ -160,17 +160,17 @@ class _OtpScreenState extends State<OtpScreen> {
                 onTap: start > 0
                     ? null
                     : () {
-                        if (otpValue.isEmpty || otpValue.length < 4) {
-                          setState(() {
-                            hasError = true;
-                          });
-                          return;
-                        }
-                        setState(() {
-                          hasError = false;
-                        });
-                        Navigator.pushNamed(context, ResetPassword.routeName);
-                      },
+                  if (otpValue.isEmpty || otpValue.length < 4) {
+                    setState(() {
+                      hasError = true;
+                    });
+                    return;
+                  }
+                  setState(() {
+                    hasError = false;
+                  });
+                  Navigator.pushNamed(context, ResetPassword.routeName);
+                },
                 text: 'تأكيد',
               ),
 
@@ -178,18 +178,18 @@ class _OtpScreenState extends State<OtpScreen> {
 
               start > 0
                   ? Text(
-                      'حاول مرة أخرى بعد 00:${start.toString().padLeft(2, '0')}',
-                      style: TextStyle(color: kSecondaryColor, fontSize: 16),
-                    )
+                'حاول مرة أخرى بعد 00:${start.toString().padLeft(2, '0')}',
+                style: TextStyle(color: kSecondaryColor, fontSize: 16),
+              )
                   : GestureDetector(
-                      onTap: () {
-                        startTimer();
-                      },
-                      child: Text(
-                        'إعادة إرسال الرمز',
-                        style: TextStyle(color: kPrimaryColor, fontSize: 16),
-                      ),
-                    ),
+                onTap: () {
+                  startTimer();
+                },
+                child: Text(
+                  'إعادة إرسال الرمز',
+                  style: TextStyle(color: kPrimaryColor, fontSize: 16),
+                ),
+              ),
             ],
           ),
         ),

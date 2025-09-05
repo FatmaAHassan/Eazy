@@ -127,17 +127,17 @@ class _ResetPasswordState extends State<UpdatePasswordScreen> {
                 ),
                 SizedBox(height: height(context) * 0.40),
                 CustomButton(
-                  onTap: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                    } else {
-                      setState(() {
-                        autoValidateMode = AutovalidateMode.always;
-                      });
-                    }
-                  },
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        formKey.currentState!.save();
+                      } else {
+                        setState(() {
+                          autoValidateMode = AutovalidateMode.always;
+                        });
+                      }
+                    },
 
-                  text: 'حفظ التعديلات'
+                    text: 'حفظ التعديلات'
                 ),
               ],
             ),

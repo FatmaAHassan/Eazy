@@ -9,7 +9,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class Eazy extends StatelessWidget {
   final AppRouter _appRouter;
   const Eazy({super.key, required AppRouter appRouter})
-    : _appRouter = appRouter;
+      : _appRouter = appRouter;
 
   @override
   Widget build(BuildContext context) {

@@ -1,12 +1,12 @@
 import 'package:eazy/constants.dart';
 import 'package:eazy/core/config/images_manager.dart';
-import 'package:eazy/features/Other/Screens/Terms%20and%20Conditions.dart';
+import 'package:eazy/features/Other/Screens/Api%20terms/Terms%20and%20Conditions.dart';
 import 'package:eazy/features/Other/Screens/common%20questions.dart';
-import 'package:eazy/features/Other/Screens/contact%20us.dart';
+import 'package:eazy/features/Other/Screens/Api%20contact/contact%20us.dart';
 import 'package:eazy/features/Other/widgets/logout_widget.dart';
 import 'package:eazy/features/Other/widgets/share_Sheet.dart';
 import 'package:eazy/features/Subscriptions/Screens/Subscriptions.dart';
-import 'package:eazy/features/Subscriptions/Screens/Upgrade%20now.dart';
+import 'package:eazy/features/Subscriptions/Screens/Api%20UpgradeNow/Upgrade%20now.dart';
 import 'package:eazy/features/authscreen/widgets/custom_setting_row.dart';
 import 'package:eazy/features/authscreen/widgets/show_bottom_sheet.dart';
 import 'package:eazy/features/profile/presentation/screen/personalDetailsScreen.dart';
@@ -107,7 +107,7 @@ class ProfileScreen extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
-                                      const PersonalDetailsScreen(),
+                                  const PersonalDetailsScreen(),
                                 ),
                               );
                             },
@@ -215,7 +215,7 @@ class ProfileScreen extends StatelessWidget {
                 CustomSettingRow(
                   image: 'assets/images/share (1) 2.png',
                   text:
-                      "مشاركة التطبيق", ///////////////////////////////////////////////////////
+                  "مشاركة التطبيق", ///////////////////////////////////////////////////////
                   onTap: () {
                     showShareSheet(context);
                   },

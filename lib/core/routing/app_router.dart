@@ -1,12 +1,11 @@
 import 'package:eazy/features/Questionsafterlesson/first%20question.dart';
-import 'package:eazy/features/Subscriptions/Screens/Upgrade%20now.dart';
+import 'package:eazy/features/Subscriptions/Screens/Api%20UpgradeNow/Upgrade%20now.dart';
 import 'package:eazy/features/Subscriptions/Screens/payment.dart';
 import 'package:eazy/features/home/presentation/Screens/home.dart';
 import 'package:eazy/features/home/presentation/Screens/section_screen.dart';
 import 'package:eazy/features/lessons/presentation/screens/lessons.dart';
 import 'package:eazy/features/lessons/presentation/screens/lessons_details.dart';
-import 'package:eazy/features/myLessons/presentation/screens/myLessons_screen.dart';
-import 'package:eazy/features/onboarding/presentation/onboarding.dart';
+import 'package:eazy/features/myLessons/presentation/screens/Api_Mylesson/myLessons_screen.dart';
 import 'package:eazy/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:eazy/core/routing/routes.dart';
@@ -67,11 +66,11 @@ class AppRouter {
         return _animatedRoute(const PaymentScreen(), settings);
       case Routes.FirstQuestionScreen:
         return _animatedRoute(const FirstQuestionScreen(), settings);
-      case Routes.onboardingScreen:
-        return _animatedRoute(const OnboardingScreen(), settings);
-      
-      // case Routes.onboardingScreen:
-      //   return _animatedRoute(const OnboardingScreen(), settings);
+    //   case Routes.onboardingWelcomeScreen:
+    //   return _animatedRoute(const OnboardingWelcomeScreen(), settings);
+
+    // case Routes.onboardingScreen:
+    //   return _animatedRoute(const OnboardingScreen(), settings);
 
       default:
         return _animatedRoute(

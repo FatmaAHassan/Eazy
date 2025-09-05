@@ -6,7 +6,7 @@
 // import '../../features/authscreen/reset_password.dart';
 // import '../../features/authscreen/update_password_screen.dart';
 // import '../../features/profile/presentation/screen/profileScreen.dart';
-// import '../../features/profile/presentation/screen/personalDetailsScreen.dart';
+//import '../../features/profile/presentation/screen/personalDetailsScreen.dart';
 // import '../../notification/presentation/screen/notification_screen.dart';
 // import '../../notification/presentation/screen/no_notification_body.dart';
 

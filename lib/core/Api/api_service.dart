@@ -1,4 +1,3 @@
-
 import 'package:dio/dio.dart';
 
 class ApiService {
@@ -6,9 +5,9 @@ class ApiService {
 
   ApiService() {
     BaseOptions options = BaseOptions(
-      baseUrl: "https://easy.syntecheg.com/api", // حطي نفس baseUrl هنا
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 10),
+      baseUrl: "https://easy.syntecheg.com/api",
+      connectTimeout: const Duration(seconds: 20),
+      receiveTimeout: const Duration(seconds: 20),
       headers: {
         "Content-Type": "application/json",
       },

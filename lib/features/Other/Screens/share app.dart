@@ -64,7 +64,7 @@ class SharePage extends StatelessWidget {
                                 ),
                                 TextSpan(
                                   text:
-                                      '. Share instantly with people nearby If they turn on AirDrop from Control Center on iOS or from Finder on the Mac, you\'ll see their names here. Just tap to share.',
+                                  '. Share instantly with people nearby If they turn on AirDrop from Control Center on iOS or from Finder on the Mac, you\'ll see their names here. Just tap to share.',
                                 ),
                               ],
                             ),
@@ -87,7 +87,7 @@ class SharePage extends StatelessWidget {
                             height: 55,
                           ),
                           "Message",
-                          () async {
+                              () async {
                             final Uri smsUri = Uri(scheme: 'sms', path: '');
                             if (await canLaunchUrl(smsUri)) {
                               await launchUrl(smsUri);
@@ -101,7 +101,7 @@ class SharePage extends StatelessWidget {
                             height: 55,
                           ),
                           "Mail",
-                          () async {
+                              () async {
                             final Uri emailUri = Uri(
                               scheme: 'mailto',
                               path: 'example@example.com',
@@ -119,7 +119,7 @@ class SharePage extends StatelessWidget {
                             height: 55,
                           ),
                           "Twitter",
-                          () async {
+                              () async {
                             final Uri twitterUri = Uri.parse(
                               'https://twitter.com/',
                             );
@@ -138,7 +138,7 @@ class SharePage extends StatelessWidget {
                             height: 55,
                           ),
                           "Facebook",
-                          () async {
+                              () async {
                             final Uri fbUri = Uri.parse(
                               'https://facebook.com/',
                             );
@@ -225,11 +225,11 @@ class SharePage extends StatelessWidget {
   }
 
   static Widget _shareIcon(
-    Widget iconWidget,
-    String label,
-    VoidCallback onTap, {
-    Color? color,
-  }) {
+      Widget iconWidget,
+      String label,
+      VoidCallback onTap, {
+        Color? color,
+      }) {
     return GestureDetector(
       onTap: onTap,
       child: Column(
@@ -242,10 +242,10 @@ class SharePage extends StatelessWidget {
             ),
             child: iconWidget is Icon
                 ? Icon(
-                    iconWidget.icon,
-                    size: 28,
-                    color: color ?? AppPalette.textSubtitleLight,
-                  )
+              iconWidget.icon,
+              size: 28,
+              color: color ?? AppPalette.textSubtitleLight,
+            )
                 : iconWidget,
           ),
           const SizedBox(height: 8),
@@ -260,12 +260,12 @@ class SharePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("iOS Style Share Sheet"),
 
-          leading: IconButton(
+        leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black87),
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
 
       body: Center(
