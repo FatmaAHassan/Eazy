@@ -5,4 +5,5 @@ class ApiEndpoints {
   static const String package = "$baseUrl/package";
   static const String start = "$baseUrl/start";
   static const String onboarding= "$baseUrl/onboarding";
+  static const String home = "$baseUrl/home";
 }
