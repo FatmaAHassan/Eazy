@@ -1,6 +1,6 @@
 import 'package:eazy/core/config/app_palette.dart';
 import 'package:eazy/features/home/presentation/Screens/home.dart';
-import 'package:eazy/features/myLessons/presentation/screens/myLessons_screen.dart';
+import 'package:eazy/features/myLessons/presentation/screens/Api_Mylesson/myLessons_screen.dart';
 import 'package:eazy/features/profile/presentation/screen/profileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
@@ -47,8 +47,8 @@ class _CustomNavBarState extends State<CustomNavBar> {
           boxShadow: [
             BoxShadow(
               color:
-                  (_currentIndex == 1 ? AppPalette.badgeButton : Colors.black)
-                      .withOpacity(0.3),
+              (_currentIndex == 1 ? AppPalette.badgeButton : Colors.black)
+                  .withOpacity(0.3),
               blurRadius: 8,
               offset: const Offset(0, 4),
             ),

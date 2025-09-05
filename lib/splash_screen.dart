@@ -75,12 +75,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     OnboardingPageModel(
       title: "قم بتمكين تجربة التعلم الخاصة بك",
       description:
-          "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص. هذا النص هو مثال لنص يمكن",
+      "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص. هذا النص هو مثال لنص يمكن",
     ),
     OnboardingPageModel(
       title: "اكتشف محتوى تعليمي متميز",
       description:
-          "استفد من آلاف الساعات التعليمية المصممة خصيصاً لتطوير مهاراتك",
+      "استفد من آلاف الساعات التعليمية المصممة خصيصاً لتطوير مهاراتك",
     ),
     OnboardingPageModel(
       title: "ابدأ رحلتك التعليمية الآن",
@@ -126,82 +126,82 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   bottom: 30.h,
                 ),
                 child: _currentPage == _pages.length - 1
-                    // زر البدء
+                // زر البدء
                     ? ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => LoginScreen(),
-                            ),
-                          );
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppPalette.textOrange,
-                          minimumSize: Size(double.infinity, 60.h),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                        ),
-                        child: Text(
-                          "ابدأ",
-                          style: TextStylesManager.headlineMediumLight.copyWith(
-                            color: Colors.white,
-                          ),
-                        ),
-                      )
-                    // الصفحات الأولى والثانية
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LoginScreen(),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppPalette.textOrange,
+                    minimumSize: Size(double.infinity, 60.h),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  child: Text(
+                    "ابدأ",
+                    style: TextStylesManager.headlineMediumLight.copyWith(
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+                // الصفحات الأولى والثانية
                     : Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        textDirection: TextDirection.ltr,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  textDirection: TextDirection.ltr,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        _pageController.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppPalette.badgeButton,
+                        minimumSize: const Size(200, 57),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              _pageController.nextPage(
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.easeInOut,
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: AppPalette.badgeButton,
-                              minimumSize: const Size(200, 57),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Icon(
-                                  Icons.arrow_back_ios,
-                                  color: Colors.white,
-                                  size: 18,
-                                ),
-                                const SizedBox(width: 8),
-                                Text(
-                                  "التالي",
-                                  style: TextStylesManager.headlineLargeLight
-                                      .copyWith(color: Colors.white),
-                                ),
-                              ],
-                            ),
+                          const Icon(
+                            Icons.arrow_back_ios,
+                            color: Colors.white,
+                            size: 18,
                           ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => LoginScreen(),
-                                ),
-                              );
-                            },
-                            child: Text(
-                              "تخطي",
-                              style: TextStylesManager.headlineLargeLight,
-                            ),
+                          const SizedBox(width: 8),
+                          Text(
+                            "التالي",
+                            style: TextStylesManager.headlineLargeLight
+                                .copyWith(color: Colors.white),
                           ),
                         ],
                       ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => LoginScreen(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "تخطي",
+                        style: TextStylesManager.headlineLargeLight,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -228,7 +228,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             textDirection: TextDirection.rtl,
             children: List.generate(
               _pages.length,
-              (index) => _buildPageIndicator(index),
+                  (index) => _buildPageIndicator(index),
             ),
           ),
 

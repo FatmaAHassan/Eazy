@@ -43,21 +43,21 @@ class LessonCard extends StatelessWidget {
             child: Center(
               child: isCompleted
                   ? const Icon(
-                      Icons.check,
-                      color: Colors.white,
-                      size: 20,
-                    )
+                Icons.check,
+                color: Colors.white,
+                size: 20,
+              )
                   : Text(
-                      '$lessonNumber',
-                      style: const TextStyle(
-                        color: Color(0xFF757575),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                '$lessonNumber',
+                style: const TextStyle(
+                  color: Color(0xFF757575),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ),
           const SizedBox(width: 16),
-          
+
           // Content
           Expanded(
             child: Column(
@@ -85,7 +85,7 @@ class LessonCard extends StatelessWidget {
               ],
             ),
           ),
-          
+
           // Arrow Icon
           Icon(
             Icons.arrow_forward_ios,

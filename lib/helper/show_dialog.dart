@@ -27,19 +27,19 @@ void showSuccessDialog(BuildContext context,String message, String buttonText, V
               ),
               const SizedBox(height: 20),
               GestureDetector(
-                  onTap: onTap,
-                  child: Container(
-                    width: double.infinity,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: kPrimaryColor,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Center(
-                      child: Text('انتقل الي الصفحه الرئيسيه',style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
-                    ),
+                onTap: onTap,
+                child: Container(
+                  width: double.infinity,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: kPrimaryColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Center(
+                    child: Text('انتقل الي الصفحه الرئيسيه',style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),),
                   ),
                 ),
+              ),
 
               const SizedBox(height: 15),
             ],

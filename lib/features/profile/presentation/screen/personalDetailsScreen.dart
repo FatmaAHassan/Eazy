@@ -121,7 +121,7 @@ class PersonalDetailsScreen extends StatelessWidget {
                           return ShowBottomSheet(
                             title: 'حذف الحساب',
                             firstLine:
-                                'هل انت متأكد من انك تريد حذف الحساب؟ سيتم حذف',
+                            'هل انت متأكد من انك تريد حذف الحساب؟ سيتم حذف',
                             secondLine: 'البيانات بشكل كامل',
                           );
                         },

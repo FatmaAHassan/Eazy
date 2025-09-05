@@ -119,7 +119,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                         context,
                         'تم حفظ التغيرات بنجاح',
                         'انتقل الي الصفحه الرئيسيه',
-                        () {
+                            () {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(

@@ -9,7 +9,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 class Eazy extends StatelessWidget {
   final AppRouter _appRouter;
   const Eazy({super.key, required AppRouter appRouter})
-    : _appRouter = appRouter;
+      : _appRouter = appRouter;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class Eazy extends StatelessWidget {
         supportedLocales: const [Locale('en'), Locale('ar')],
         locale: const Locale('ar'),
         debugShowCheckedModeBanner: false,
-        initialRoute: Routes.LessonsScreen,
+        initialRoute: Routes.MyLessonsScreen,
         onGenerateRoute: _appRouter.generateRoute,
       ),
     );
