@@ -22,4 +22,6 @@ class Routes {
   static const String UpgradeNowScreen = 'UpgradeNowScreen';
   static const String PaymentScreen = 'PaymentScreen';
   static const String FirstQuestionScreen = 'FirstQuestionScreen';
+  static const String onboardingScreen = 'onboardingScreen';
+
 }

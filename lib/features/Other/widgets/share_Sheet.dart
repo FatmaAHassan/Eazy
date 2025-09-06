@@ -63,7 +63,7 @@ void showShareSheet(BuildContext context) {
                               ),
                               TextSpan(
                                 text:
-                                    '. Share instantly with people nearby If they turn on AirDrop from Control Center on iOS or from Finder on the Mac, you\'ll see their names here. Just tap to share.',
+                                '. Share instantly with people nearby If they turn on AirDrop from Control Center on iOS or from Finder on the Mac, you\'ll see their names here. Just tap to share.',
                               ),
                             ],
                           ),
@@ -86,7 +86,7 @@ void showShareSheet(BuildContext context) {
                           height: 55,
                         ),
                         "Message",
-                        () async {
+                            () async {
                           final Uri smsUri = Uri(scheme: 'sms', path: '');
                           if (await canLaunchUrl(smsUri)) {
                             await launchUrl(smsUri);
@@ -100,7 +100,7 @@ void showShareSheet(BuildContext context) {
                           height: 55,
                         ),
                         "Mail",
-                        () async {
+                            () async {
                           final Uri emailUri = Uri(
                             scheme: 'mailto',
                             path: 'example@example.com',
@@ -118,7 +118,7 @@ void showShareSheet(BuildContext context) {
                           height: 55,
                         ),
                         "Twitter",
-                        () async {
+                            () async {
                           final Uri twitterUri = Uri.parse(
                             'https://twitter.com/',
                           );
@@ -137,7 +137,7 @@ void showShareSheet(BuildContext context) {
                           height: 55,
                         ),
                         "Facebook",
-                        () async {
+                            () async {
                           final Uri fbUri = Uri.parse('https://facebook.com/');
                           if (await canLaunchUrl(fbUri)) {
                             await launchUrl(
@@ -220,11 +220,11 @@ void showShareSheet(BuildContext context) {
 
 /// widget helper للايقونات
 Widget _shareIcon(
-  Widget iconWidget,
-  String label,
-  VoidCallback onTap, {
-  Color? color,
-}) {
+    Widget iconWidget,
+    String label,
+    VoidCallback onTap, {
+      Color? color,
+    }) {
   return GestureDetector(
     onTap: onTap,
     child: Column(
@@ -237,10 +237,10 @@ Widget _shareIcon(
           ),
           child: iconWidget is Icon
               ? Icon(
-                  iconWidget.icon,
-                  size: 28,
-                  color: color ?? AppPalette.textSubtitleLight,
-                )
+            iconWidget.icon,
+            size: 28,
+            color: color ?? AppPalette.textSubtitleLight,
+          )
               : iconWidget,
         ),
         const SizedBox(height: 8),

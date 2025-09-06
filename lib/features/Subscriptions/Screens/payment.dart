@@ -1,18 +1,28 @@
 import 'package:eazy/core/config/app_palette.dart';
 import 'package:eazy/core/config/images_manager.dart';
+import 'package:eazy/core/network/shared_prefrence.dart';
 import 'package:eazy/features/Subscriptions/Screens/Subscriptions.dart';
-import 'package:eazy/features/Subscriptions/Screens/Upgrade%20now.dart';
 import 'package:flutter/material.dart';
+import 'Api UpgradeNow/upgradeNow_Model.dart';
+import 'Api UpgradeNow/upgradenowRepositry.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends StatefulWidget {
   const PaymentScreen({super.key});
   static const String routeName = 'PaymentScreen';
 
-  static const double fieldSpacing = 16.0;
-  static const double maxCardWidth = 470;
+  @override
+  State<PaymentScreen> createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
+  double price = 0; // السعر من الـ API
+  double tax = 0;   // الضريبة
+  bool isLoading = true;
 
   @override
   Widget build(BuildContext context) {
+    final repo = SubscriptionRepository();
+
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -30,177 +40,215 @@ class PaymentScreen extends StatelessWidget {
             ),
           ),
         ),
-
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
-          // EdgeInsets.all(AppPadding.containerPaddingAll),
-          child: Center(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: maxCardWidth),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  // صورة Eazy
-                  Image.asset(ImagesManager.eazyPay, height: 130),
-                  const SizedBox(height: 2),
-
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Secure payment",
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: AppPalette.textBlack,
-                        ),
-                      ),
-
-                      const SizedBox(width: 6),
-                     Icon(Icons.lock, color: AppPalette.textBlack),
-                    ],
+        body: SafeArea(
+          // 🔹 أول FutureBuilder يجيب التوكين من SharedPreferences
+          child: FutureBuilder<String?>(
+            future: getToken(),
+            builder: (context, tokenSnapshot) {
+              if (tokenSnapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(color: AppPalette.textLight),
+                );
+              } else if (tokenSnapshot.hasError) {
+                return Center(
+                  child: Text(
+                    "حصل خطأ أثناء جلب التوكن: ${tokenSnapshot.error}",
+                    style: const TextStyle(color: AppPalette.textLight),
                   ),
-
-                  const SizedBox(height: 30),
-
-                  _buildInputField(
-                    label: "رقم البطاقة",
-                    hint: "**** **** **** 1234",
+                );
+              } else if (!tokenSnapshot.hasData || tokenSnapshot.data == null) {
+                return const Center(
+                  child: Text(
+                    "لم يتم تسجيل الدخول",
+                    style: TextStyle(color: AppPalette.textLight),
                   ),
-                  const SizedBox(height: fieldSpacing),
+                );
+              }
 
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _buildInputField(
-                          label: "تاريخ الانتهاء",
-                          hint: "MM/YY",
-                        ),
+              final token = tokenSnapshot.data!;
+
+              // 🔹 بعد ما يجيب التوكين يستعمله يجيب بيانات الباقة
+              return FutureBuilder<subscription?>(
+                future: repo.getSubscription(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(color: AppPalette.textLight),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text(
+                        "حصل خطأ: ${snapshot.error}",
+                        style: const TextStyle(color: AppPalette.textLight),
                       ),
-                      const SizedBox(width: 12),
-                      Expanded(
-                        child: _buildInputField(
-                          label: "رمز الأمان",
-                          hint: "CVV",
-                          obscureText: true,
-                        ),
+                    );
+                  } else if (!snapshot.hasData || snapshot.data?.package == null) {
+                    return const Center(
+                      child: Text(
+                        "لا توجد بيانات متاحة",
+                        style: TextStyle(color: AppPalette.textLight),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
+                    );
+                  }
 
-                  // اسم حامل البطاقة
-                  _buildInputField(
-                    label: "اسم حامل البطاقة",
-                    hint: "كما هو على البطاقة",
-                  ),
-                  const SizedBox(height: fieldSpacing),
+                  final package = snapshot.data!.package!;
+                  price = package.price?.toDouble() ?? 0;
 
-                  const SizedBox(height: 10),
+                  return SingleChildScrollView(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Center(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxWidth: 470),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Image.asset(ImagesManager.eazyPay, height: 130),
+                            const SizedBox(height: 2),
 
-                  // جملة تكلفة الاشتراك قبل الصندوق
-                  const Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      "تكلفة الاشتراك",
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 20),
-
-                  // صندوق ملخص الدفع
-                  _buildPaymentSummary(),
-
-                  const SizedBox(height: 35),
-
-                  // زر الدفع
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppPalette.primary,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(
-                                vertical: 20,
-                                horizontal: 24,
-                              ),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const SizedBox(height: 8),
-                                  const Text(
-                                    "تم الدفع بنجاح",
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: const [
+                                Text(
+                                  "Secure payment",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppPalette.textBlack,
                                   ),
-                                  const SizedBox(height: 24),
-                                  SizedBox(
-                                    width: double.infinity,
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: AppPalette.primary,
+                                ),
+                                SizedBox(width: 6),
+                                Icon(Icons.lock, color: AppPalette.textBlack),
+                              ],
+                            ),
+
+                            const SizedBox(height: 30),
+
+                            _buildInputField(
+                              label: "رقم البطاقة",
+                              hint: "**** **** **** 1234",
+                            ),
+                            const SizedBox(height: 16),
+
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: _buildInputField(
+                                    label: "تاريخ الانتهاء",
+                                    hint: "MM/YY",
+                                  ),
+                                ),
+                                const SizedBox(width: 12),
+                                Expanded(
+                                  child: _buildInputField(
+                                    label: "رمز الأمان",
+                                    hint: "CVV",
+                                    obscureText: true,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 20),
+
+                            _buildInputField(
+                              label: "اسم حامل البطاقة",
+                              hint: "كما هو على البطاقة",
+                            ),
+
+                            const SizedBox(height: 50),
+
+                            const Align(
+                              alignment: Alignment.centerRight,
+                              child: Text(
+                                "تكلفة الاشتراك",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+
+                            const SizedBox(height: 20),
+
+                            // ✅ السعر من الـ API
+                            _buildPaymentSummary(price, tax, package),
+
+                            const SizedBox(height: 35),
+
+                            SizedBox(
+                              width: double.infinity,
+                              height: 50,
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: AppPalette.primary,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                ),
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(
-                                            12,
-                                          ),
+                                          borderRadius: BorderRadius.circular(16),
                                         ),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                const SubscriptionScreen(),
-                                          ),
-                                        );
-                                      },
-                                      child: const Text(
-                                        "تم",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: AppPalette.textLight,
+                                        content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Text(
+                                              "تم الدفع بنجاح",
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            const SizedBox(height: 24),
+                                            ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: AppPalette.primary,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius: BorderRadius.circular(12),
+                                                ),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (context) => const SubscriptionScreen(),
+                                                  ),
+                                                );
+                                              },
+                                              child: const Text(
+                                                "تم",
+                                                style: TextStyle(
+                                                  fontSize: 16,
+                                                  color: AppPalette.textLight,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      ),
-                                    ),
+                                      );
+                                    },
+                                  );
+                                },
+                                child: const Text(
+                                  "اذهب للدفع",
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    color: AppPalette.textLight,
                                   ),
-                                ],
+                                ),
                               ),
-                            );
-                          },
-                        );
-                      },
-                      child: const Text(
-                        "اذهب للدفع",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: AppPalette.textLight,
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
+                  );
+                },
+              );
+            },
           ),
         ),
       ),
@@ -215,29 +263,21 @@ class PaymentScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.bold,
-            color: AppPalette.textBlackLight,
-          ),
-        ),
+        Text(label,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: AppPalette.textBlackLight,
+            )),
         const SizedBox(height: 6),
         TextFormField(
           obscureText: obscureText,
           decoration: InputDecoration(
             hintText: hint,
-            hintStyle: const TextStyle(color: AppPalette.textSubtitleLight),
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 14,
-            ),
+            contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
-              borderSide: const BorderSide(
-                color: AppPalette.textFiledEnabledBorder,
-              ),
+              borderSide: const BorderSide(color: AppPalette.textFiledEnabledBorder),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10),
@@ -249,8 +289,8 @@ class PaymentScreen extends StatelessWidget {
     );
   }
 
-  // صندوق ملخص الدفع
-  static Widget _buildPaymentSummary() {
+  static Widget _buildPaymentSummary(double price, double tax, dynamic package) {
+    double total = price + tax;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -259,41 +299,33 @@ class PaymentScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _buildSummaryRow("تكلفة الاشتراك", "70 ج.م"),
+          _buildSummaryRow("تكلفة الاشتراك", "${package.price ?? 0} د.ل"),
           const SizedBox(height: 6),
-          _buildSummaryRow("الضريبة", "10 ج.م"),
+          _buildSummaryRow("الضريبة", "$tax د.ل"),
           const Divider(color: AppPalette.borderColor),
-          _buildSummaryRow("المجموع", "80 ج.م", isBold: true),
+          _buildSummaryRow("المجموع", "$total د.ل", isBold: true),
         ],
       ),
     );
   }
 
-  // صف ملخص الدفع
-  static Widget _buildSummaryRow(
-    String title,
-    String value, {
-    bool isBold = false,
-  }) {
+  static Widget _buildSummaryRow(String title, String value,
+      {bool isBold = false}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          title,
-          style: TextStyle(
-            fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
-            fontSize: 16,
-            color: AppPalette.textBlack,
-          ),
-        ),
-        Text(
-          value,
-          style: TextStyle(
-            fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
-            fontSize: 16,
-            color: AppPalette.textBlack,
-          ),
-        ),
+        Text(title,
+            style: TextStyle(
+              fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+              fontSize: 16,
+              color: AppPalette.textBlack,
+            )),
+        Text(value,
+            style: TextStyle(
+              fontWeight: isBold ? FontWeight.bold : FontWeight.normal,
+              fontSize: 16,
+              color: AppPalette.textBlack,
+            )),
       ],
     );
   }

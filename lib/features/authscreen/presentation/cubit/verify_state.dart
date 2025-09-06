@@ -1,3 +1,4 @@
+
 import 'package:equatable/equatable.dart';
 
 abstract class VerifyState extends Equatable {

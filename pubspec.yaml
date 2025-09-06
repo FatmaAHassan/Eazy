@@ -30,8 +30,6 @@ dependencies:
   url_launcher:
   dio:
   equatable:
-  shared_preferences:
-
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +46,7 @@ flutter:
     - assets/svgs/
     - assets/
     - assets/images/
+    - assets/mock/
 
   fonts:
     - family: Cairo

@@ -4,12 +4,12 @@ import 'package:eazy/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class Eazy extends StatelessWidget {
   final AppRouter _appRouter;
   const Eazy({super.key, required AppRouter appRouter})
-    : _appRouter = appRouter;
+      : _appRouter = appRouter;
 
   @override
   Widget build(BuildContext context) {

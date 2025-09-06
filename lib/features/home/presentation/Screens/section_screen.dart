@@ -1,75 +1,40 @@
-import 'package:eazy/core/config/text_styles_manager.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/material.dart';
 import 'package:eazy/core/config/app_palette.dart';
+import 'package:eazy/core/config/text_styles_manager.dart';
 
-class SectionScreen extends StatelessWidget {
+class SectionScreen extends StatefulWidget {
   const SectionScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final services = [
-      ServiceItem(
-        icon: Icons.quiz_outlined,
-        title: 'القواعد',
-        color: Colors.white,
-      ),
-      ServiceItem(
-        icon: Icons.record_voice_over_outlined,
-        title: 'كلمات',
-        color: Colors.white,
-      ),
-      ServiceItem(
-        icon: Icons.headset_mic_outlined,
-        title: 'الاستماع',
-        color: Colors.white,
-      ),
-      ServiceItem(
-        icon: Icons.menu_book_outlined,
-        title: 'القراءة',
-        color: Colors.white,
-      ),
-      ServiceItem(
-        icon: Icons.edit_note_outlined,
-        title: 'الكتابة',
-        color: Colors.white,
-      ),
-      ServiceItem(
-        icon: Icons.psychology_outlined,
-        title: 'المفردات',
-        color: Colors.white,
-      ),
-      ServiceItem(
-        icon: Icons.spatial_audio_outlined,
-        title: 'المحادثة',
-        color: Colors.white,
-      ),
-      ServiceItem(
-        icon: Icons.translate_outlined,
-        title: 'الترجمة',
-        color: Colors.white,
-      ),
-      ServiceItem(
-        icon: Icons.school_outlined,
-        title: 'الاختبارات',
-        color: Colors.white,
-      ),
-      ServiceItem(
-        icon: Icons.quiz_outlined,
-        title: 'القواعد',
-        color: Colors.white,
-      ),
-      ServiceItem(
-        icon: Icons.record_voice_over_outlined,
-        title: 'كلمات',
-        color: Colors.white,
-      ),
-      ServiceItem(
-        icon: Icons.headset_mic_outlined,
-        title: 'الاستماع',
-        color: Colors.white,
-      ),
-    ];
+  State<SectionScreen> createState() => _SectionScreenState();
+}
 
+class _SectionScreenState extends State<SectionScreen> {
+  List<CategoryItem> categories = [];
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    loadCategories();
+  }
+
+  Future<void> loadCategories() async {
+    final String jsonString = await rootBundle.loadString(
+      'assets/mock/categories.json',
+    );
+    final Map<String, dynamic> jsonMap = json.decode(jsonString);
+    final List<dynamic> data = jsonMap['data'];
+    setState(() {
+      categories = data.map((e) => CategoryItem.fromJson(e)).toList();
+      isLoading = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppPalette.backgroundLight,
       appBar: AppBar(
@@ -79,34 +44,40 @@ class SectionScreen extends StatelessWidget {
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black87),
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigator.pop(context),
         ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
-        child: GridView.builder(
-          shrinkWrap: true,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-            childAspectRatio: 1,
-          ),
-          itemCount: services.length,
-          itemBuilder: (context, index) =>
-              ServiceCard(service: services[index]),
-        ),
+        child: isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : GridView.builder(
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                  childAspectRatio: 1,
+                ),
+                itemCount: categories.length,
+                itemBuilder: (context, index) {
+                  final category = categories[index];
+                  return ServiceCard(
+                    title: category.title,
+                    imageUrl: category.image,
+                  );
+                },
+              ),
       ),
     );
   }
 }
 
 class ServiceCard extends StatelessWidget {
-  final ServiceItem service;
+  final String title;
+  final String imageUrl;
 
-  const ServiceCard({required this.service});
+  const ServiceCard({required this.title, required this.imageUrl, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -116,12 +87,12 @@ class ServiceCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Material(
-        color: const Color.fromARGB(0, 235, 67, 67),
+        color: Colors.transparent,
         child: InkWell(
-          onTap: () {
-            // Navigator.push(...) لما تروحي لصفحة تانية
-          },
           borderRadius: BorderRadius.circular(16),
+          onTap: () {
+            // لو حابة تروح لصفحة تفاصيل القسم
+          },
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -131,11 +102,19 @@ class ServiceCard extends StatelessWidget {
                   color: AppPalette.badgeButton,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(service.icon, size: 25, color: service.color),
+                child: Image.network(
+                  imageUrl,
+                  width: 25,
+                  height: 25,
+                  errorBuilder: (context, error, stackTrace) => const Icon(
+                    Icons.error,
+                    color: AppPalette.foregroundLight,
+                  ),
+                ),
               ),
               const SizedBox(height: 8),
               Text(
-                service.title,
+                title,
                 style: TextStylesManager.titleSmall,
                 textAlign: TextAlign.center,
               ),
@@ -147,10 +126,18 @@ class ServiceCard extends StatelessWidget {
   }
 }
 
-class ServiceItem {
-  final IconData icon;
+class CategoryItem {
+  final int id;
   final String title;
-  final Color color;
+  final String image;
 
-  ServiceItem({required this.icon, required this.title, required this.color});
+  CategoryItem({required this.id, required this.title, required this.image});
+
+  factory CategoryItem.fromJson(Map<String, dynamic> json) {
+    return CategoryItem(
+      id: json['id'],
+      title: json['title'],
+      image: json['image'],
+    );
+  }
 }

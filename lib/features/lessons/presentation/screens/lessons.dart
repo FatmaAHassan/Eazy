@@ -1,5 +1,5 @@
 import 'package:eazy/core/config/text_styles_manager.dart';
-import 'package:eazy/features/Subscriptions/Screens/Upgrade%20now.dart';
+import 'package:eazy/features/Subscriptions/Screens/Api%20UpgradeNow/Upgrade%20now.dart';
 import 'package:flutter/material.dart';
 import 'package:eazy/core/config/app_palette.dart';
 import 'package:eazy/features/lessons/presentation/widgets/lessons_title.dart';
@@ -45,7 +45,7 @@ class LessonsScreen extends StatelessWidget {
                   SizedBox(height: 10.h),
                   LessonDescription(
                     text:
-                        "سنتعلم في هذا الدرس متى نستخدم سنتعلم في هذا الدرس متى نستخدم مع "
+                    "سنتعلم في هذا الدرس متى نستخدم سنتعلم في هذا الدرس متى نستخدم مع "
                         "سنتعلم في هذا الدرس متى نستخدم سنتعلم في هذا الدرس متى نستخدم مع "
                         "سنتعلم في هذا الدرس متى نستخدم سنتعلم ... ",
                   ),

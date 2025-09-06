@@ -1,10 +1,10 @@
 import 'package:eazy/core/config/app_palette.dart';
 import 'package:eazy/features/home/presentation/Screens/home.dart';
-import 'package:eazy/features/myLessons/presentation/screens/myLessons_screen.dart';
-import 'package:eazy/features/profile/presentation/presentation/screen/profileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 
+import 'features/myLessons/presentation/screens/Api_Mylesson/myLessons_screen.dart';
+import 'features/profile/presentation/presentation/screen/profileScreen.dart';
 
 class CustomNavBar extends StatefulWidget {
   const CustomNavBar({super.key, this.initialIndex = 1});

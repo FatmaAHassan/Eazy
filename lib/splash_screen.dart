@@ -1,11 +1,11 @@
 import 'package:eazy/core/config/app_padding.dart';
 import 'package:eazy/core/config/app_palette.dart';
 import 'package:eazy/core/config/images_manager.dart';
+import 'package:eazy/core/config/text_styles_manager.dart';
+import 'package:eazy/features/authscreen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'features/authscreen/presentation/screens/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 4), () {
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
@@ -96,11 +96,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Directionality(
       textDirection: TextDirection.ltr,
       child: Scaffold(
-
         body: SafeArea(
           child: Column(
             children: [
@@ -122,8 +120,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
               // الأزرار أسفل الشاشة
               Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: AppPadding.horizontalPagePadding,
+                padding: EdgeInsets.only(
+                  left: AppPadding.horizontalPagePadding,
+                  right: AppPadding.horizontalPagePadding,
+                  bottom: 30.h,
                 ),
                 child: _currentPage == _pages.length - 1
                     // زر البدء
@@ -138,16 +138,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppPalette.textOrange,
-                          minimumSize: Size(double.infinity, 80.h),
+                          minimumSize: Size(double.infinity, 60.h),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
                         child: Text(
-                          "البدء",
-                          style: GoogleFonts.tajawal(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.bold,
+                          "ابدأ",
+                          style: TextStylesManager.headlineMediumLight.copyWith(
                             color: Colors.white,
                           ),
                         ),
@@ -157,7 +155,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         textDirection: TextDirection.ltr,
                         children: [
-                          // زرار التالي (هينزل على الشمال)
                           ElevatedButton(
                             onPressed: () {
                               _pageController.nextPage(
@@ -183,17 +180,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 const SizedBox(width: 8),
                                 Text(
                                   "التالي",
-                                  style: GoogleFonts.tajawal(
-                                    fontSize: 16.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: Colors.white,
-                                  ),
+                                  style: TextStylesManager.headlineLargeLight
+                                      .copyWith(color: Colors.white),
                                 ),
                               ],
                             ),
                           ),
-
-                          // زرار تخطي (هيفضل على اليمين)
                           TextButton(
                             onPressed: () {
                               Navigator.pushReplacement(
@@ -205,11 +197,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             },
                             child: Text(
                               "تخطي",
-                              style: GoogleFonts.tajawal(
-                                fontSize: 16.sp,
-                                color: Colors.grey,
-                                fontWeight: FontWeight.w400,
-                              ),
+                              style: TextStylesManager.headlineLargeLight,
                             ),
                           ),
                         ],
@@ -249,12 +237,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           // العنوان
           Text(
             page.title,
-            style: GoogleFonts.tajawal(
-              fontSize: 15.sp,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-              // height: 1.5,
-            ),
+            style: TextStylesManager.titleLarge,
             textAlign: TextAlign.center,
           ),
           SizedBox(height: 10.h),
@@ -262,12 +245,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           // الوصف
           Text(
             page.description,
-            style: GoogleFonts.tajawal(
-              fontSize: 14.sp,
-              fontWeight: FontWeight.w400,
-              color: Colors.grey[400],
-              // height: 1.5,
-            ),
+            style: TextStylesManager.headlineLargeLight,
             textAlign: TextAlign.center,
           ),
         ],

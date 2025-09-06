@@ -1,7 +1,7 @@
 import 'package:eazy/core/config/app_palette.dart';
 import 'package:eazy/core/config/images_manager.dart';
 import 'package:eazy/features/lessons/presentation/screens/lessons.dart';
-import 'package:eazy/features/myLessons/presentation/screens/myLessons_screen.dart';
+import 'package:eazy/features/myLessons/presentation/screens/Api_Mylesson/myLessons_screen.dart';
 import 'package:eazy/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,10 +12,15 @@ class ResultScreen extends StatelessWidget {
   final int totalQuestions;
   final Duration timeTaken;
 
+  final List<Map<String, dynamic>> questions;
+  final List<int> selectedAnswers;
+
   const ResultScreen({
     super.key,
     required this.correctAnswers,
     required this.totalQuestions,
+    required this.questions,
+    required this.selectedAnswers,
     this.timeTaken = const Duration(minutes: 5),
   });
 
@@ -116,41 +121,6 @@ class ResultScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ResultsScreen(),
-                                ),
-                              );
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.transparent, // ✅ زر شفاف
-                              shadowColor: Colors.transparent,
-                              elevation: 0,
-                            ),
-                            child: Row(
-                              children: [
-                                const Text(
-                                  "عرض الحلول",
-                                  style: TextStyle(
-                                    color: AppPalette.textOrange,
-                                  ),
-                                ),
-                                const SizedBox(width: 6),
-                                CircleAvatar(
-                                  radius: 12,
-                                  backgroundColor: AppPalette.textOrange,
-                                  child: const Icon(
-                                    Icons.remove_red_eye,
-                                    size: 16,
-                                    color: AppPalette.textLight,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
 
                           //  عدد الأسئلة والوقت
                           Column(
@@ -173,6 +143,47 @@ class ResultScreen extends StatelessWidget {
                               ),
                             ],
                           ),
+
+
+                          ElevatedButton(
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ResultsScreen(questions: questions,             // ← لستة الأسئلة
+                                      selectedAnswers: selectedAnswers,)
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.transparent, // ✅ زر شفاف
+                              shadowColor: Colors.transparent,
+                              elevation: 0,
+                            ),
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                  radius: 12,
+                                  backgroundColor: AppPalette.textOrange,
+                                  child: const Icon(
+                                    Icons.remove_red_eye,
+                                    size: 16,
+                                    color: AppPalette.textLight,
+                                  ),
+                                ),
+                                const SizedBox(width: 6),
+                                const Text(
+                                  "عرض الحلول",
+                                  style: TextStyle(
+                                    color: AppPalette.textOrange,
+                                  ),
+                                ),
+
+
+                              ],
+                            ),
+                          ),
+
                         ],
                       ),
                     ],
@@ -193,7 +204,7 @@ class ResultScreen extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:
-                            AppPalette.primary, // اللون الأزرق من التصميم
+                        AppPalette.primary, // اللون الأزرق من التصميم
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                             12,
@@ -231,14 +242,14 @@ class ResultScreen extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const CustomNavBar(
-                  initialIndex: 0,
-                ),
-              ),
-              (route) => false,
-            );
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CustomNavBar(
+                        initialIndex: 0,
+                      ),
+                    ),
+                        (route) => false,
+                  );
                 },
               ),
             ),
