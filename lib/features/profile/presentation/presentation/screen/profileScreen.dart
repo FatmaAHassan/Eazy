@@ -1,5 +1,6 @@
 import 'package:eazy/constants.dart';
 import 'package:eazy/core/config/images_manager.dart';
+import 'package:eazy/features/Other/Screens/Terms%20and%20Conditions.dart';
 import 'package:eazy/features/Other/Screens/common%20questions.dart';
 import 'package:eazy/features/Other/Screens/contact%20us.dart';
 import 'package:eazy/features/Other/widgets/logout_widget.dart';
@@ -14,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../Other/Screens/Api terms/Terms and Conditions.dart';
 import '../profilecubit/profile_cubit.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -109,9 +109,7 @@ class _ProfileScreenState extends State<ProfileScreen> with RouteAware {
                           CircleAvatar(
                             radius: 40,
                             backgroundImage: profile.image != null
-                                ? NetworkImage(
-                                    "${profile.image!}?v=${DateTime.now().millisecondsSinceEpoch}",
-                                  )
+                                ? NetworkImage(profile.image!) as ImageProvider
                                 : const AssetImage("assets/images/Oval.png"),
                           ),
                           const SizedBox(width: 20),
@@ -135,6 +133,7 @@ class _ProfileScreenState extends State<ProfileScreen> with RouteAware {
                                             const PersonalDetailsScreen(),
                                       ),
                                     ).then((_) {
+
                                       context.read<ProfileCubit>().getProfile();
                                     });
                                   },
