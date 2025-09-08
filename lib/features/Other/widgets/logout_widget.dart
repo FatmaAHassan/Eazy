@@ -1,5 +1,5 @@
 import 'package:eazy/core/config/app_palette.dart';
-import 'package:eazy/features/authscreen/login_screen.dart';
+import 'package:eazy/features/authscreen/presentation/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

@@ -185,7 +185,7 @@ class LessonItem extends StatelessWidget {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      SizedBox(width: 2),
+                      SizedBox(width: 2.w),
                       Icon(Icons.lock, size: 16.sp, color: Colors.white),
                     ],
                   ),

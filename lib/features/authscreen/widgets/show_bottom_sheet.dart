@@ -1,6 +1,7 @@
 import 'package:eazy/constants.dart';
-import 'package:eazy/features/authscreen/widgets/custom_buttom_sheet.dart';
 import 'package:flutter/material.dart';
+
+import 'custom_buttom_sheet.dart';
 
 
 class ShowBottomSheet extends StatelessWidget {

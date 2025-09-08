@@ -1,5 +1,4 @@
 import 'package:eazy/core/config/app_palette.dart';
-import 'package:eazy/features/profile/presentation/screen/profileScreen.dart';
 import 'package:eazy/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'Api terms/Terms and Conditions.dart';

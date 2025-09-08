@@ -10,6 +10,7 @@ class CustomTextField extends StatefulWidget {
     this.text,
     this.iconData,
     this.isPassword = false,
+    this.controller
   });
 
   final String? Function(String?)? validator;
@@ -17,6 +18,8 @@ class CustomTextField extends StatefulWidget {
   final String? text;
   final IconData? iconData;
   final bool isPassword;
+  final TextEditingController? controller;
+
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -38,6 +41,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       child: Directionality(
         textDirection: TextDirection.rtl,
         child: TextFormField(
+          controller: widget.controller,
           obscureText: widget.isPassword ? obscureText : false,
           textDirection: TextDirection.rtl,
           textAlign: TextAlign.right,

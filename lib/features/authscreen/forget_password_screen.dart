@@ -105,7 +105,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       formKey.currentState!.save();
                       showSnackBar(
                         context,
-                        'تم إرسال رابط استعادة كلمة المرور',
+                        'تم إرسال رابط استعادة كلمة المرور',Colors.green,
                       );
                       if (emailOrPhone != null && emailOrPhone!.isNotEmpty) {
                         Navigator.pushNamed(

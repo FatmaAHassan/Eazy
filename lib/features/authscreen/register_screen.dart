@@ -236,7 +236,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   void validateAndSubmit() {
     if (!isCheck) {
-      showSnackBar(context, 'يجب الموافقة على الشروط والأحكام للاستمرار');
+      showSnackBar(context, 'يجب الموافقة على الشروط والأحكام للاستمرار',Colors.red);
       return;
     }
 

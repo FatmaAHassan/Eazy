@@ -10,17 +10,21 @@ import 'package:eazy/features/onboarding/presentation/onboarding.dart';
 import 'package:eazy/nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:eazy/core/routing/routes.dart';
-import 'package:eazy/features/authscreen/login_screen.dart';
-import 'package:eazy/features/authscreen/otp_screen.dart';
-import 'package:eazy/features/authscreen/register_screen.dart';
-import 'package:eazy/features/authscreen/reset_password.dart';
-import 'package:eazy/features/authscreen/update_password_screen.dart';
-import 'package:eazy/features/profile/presentation/screen/personalDetailsScreen.dart';
-import 'package:eazy/features/profile/presentation/screen/profileScreen.dart';
+import 'package:eazy/features/authscreen/presentation/screens/login_screen.dart';
+import 'package:eazy/features/authscreen/presentation/screens/otp_screen.dart';
+import 'package:eazy/features/authscreen/presentation/screens/register_screen.dart';
+import 'package:eazy/features/authscreen/presentation/screens/reset_password.dart';
+import 'package:eazy/features/authscreen/presentation/screens/update_password_screen.dart';
 import 'package:eazy/notification/presentation/screen/no_notification_body.dart';
-import 'package:eazy/features/authscreen/forget_password_screen.dart';
+import 'package:eazy/features/authscreen/presentation/screens/forget_password_screen.dart';
 import 'package:eazy/notification/presentation/screen/notification_screen.dart';
-import 'package:eazy/splash_screen.dart';
+import 'package:eazy/splash_screen.dart' hide OnboardingScreen;
+
+import '../../features/authscreen/presentation/screens/verify_account_screen.dart';
+import '../../features/authscreen/presentation/screens/verify_screen.dart';
+import '../../features/profile/presentation/presentation/screen/personalDetailsScreen.dart';
+import '../../features/profile/presentation/presentation/screen/profileScreen.dart';
+
 
 class AppRouter {
   Route generateRoute(RouteSettings settings) {
@@ -36,9 +40,13 @@ class AppRouter {
       case Routes.ForgetPasswordScreen:
         return _animatedRoute(const ForgetPasswordScreen(), settings);
       case Routes.OtpScreen:
-        return _animatedRoute(const OtpScreen(), settings);
-      case Routes.ResetPassword:
-        return _animatedRoute(const ResetPassword(), settings);
+        return _animatedRoute(const OtpScreen(phone: "",), settings);
+      case Routes.VerifyScreen:
+        return _animatedRoute(const VerifyScreen(phone: '',), settings);
+      case Routes.VerifyAccountScreen:
+        return _animatedRoute(const VerifyAccountScreen(), settings);
+      case Routes.ResetPasswordScreen:
+        return _animatedRoute(const ResetPasswordScreen(phone: '', otp: '',), settings);
       case Routes.UpdatePasswordScreen:
         return _animatedRoute(const UpdatePasswordScreen(), settings);
       case Routes.CustomNavBar:

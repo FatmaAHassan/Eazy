@@ -1,7 +1,8 @@
 import 'package:eazy/core/config/app_palette.dart';
-import 'package:eazy/features/profile/presentation/screen/profileScreen.dart';
+import 'package:eazy/features/profile/presentation/presentation/screen/profileScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 
 /// function لفتح الـ share sheet
 void showShareSheet(BuildContext context) {

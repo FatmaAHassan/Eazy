@@ -28,9 +28,10 @@ dependencies:
   flutter_native_splash: ^2.4.4
   modal_progress_hud_nsn: ^0.5.1
   url_launcher:
-  dio: ^5.9.0
-  bloc: ^9.0.0
-  webdev_proxy: ^0.1.0
+  dio:
+  equatable:
+  shared_preferences:
+
 
 dev_dependencies:
   flutter_test:
@@ -47,7 +48,6 @@ flutter:
     - assets/svgs/
     - assets/
     - assets/images/
-    - assets/mock/
 
   fonts:
     - family: Cairo
